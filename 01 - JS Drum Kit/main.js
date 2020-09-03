@@ -2,7 +2,7 @@
 
 function handleKeys(ev) {
     playSound(ev);
-    HighlightDiv(ev);
+    highlightDiv(ev);
 }
 
 function playSound(ev) {
@@ -12,7 +12,7 @@ function playSound(ev) {
     audio.play();
 }
 
-function HighlightDiv(ev) {
+function highlightDiv(ev) {
     const key = document.querySelector(`div[data-key="${ev.keyCode}"]`);
     key.classList.add('playing');
     const keys = document.querySelectorAll('.key');
