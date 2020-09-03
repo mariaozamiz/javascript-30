@@ -1,21 +1,29 @@
 'use strict';
 
-const keyDivs = document.querySelectorAll('.key');
-const soundElements = document.querySelectorAll('audio');
-
-function handleClick(ev) {
-    popUp();
-    playSound();
+function handleKeys(ev) {
+    playSound(ev);
+    HighlightDiv(ev);
 }
 
-function popUp() {
-    event.currentTarget.classList.add('playing');
+function playSound(ev) {
+    const audio = document.querySelector(`audio[data-key="${ev.keyCode}"]`);
+    if (!audio) return;
+    audio.currentTime = 0;
+    audio.play();
 }
 
-function playSound() {
-    console.log(event.currentTarget.dataset.key);
+function HighlightDiv(ev) {
+    const key = document.querySelector(`div[data-key="${ev.keyCode}"]`);
+    key.classList.add('playing');
+    const keys = document.querySelectorAll('.key');
+    keys.forEach((key) =>
+        key.addEventListener('transitionend', removeTransition)
+    );
 }
 
-for (const key of keyDivs) {
-    key.addEventListener('click', handleClick);
+function removeTransition(ev) {
+    if (ev.propertyName !== 'transform') return;
+    this.classList.remove('playing');
 }
+
+window.addEventListener('keydown', handleKeys);
