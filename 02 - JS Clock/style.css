@@ -11,6 +11,8 @@ body {
     font-size: 2rem;
     display: flex;
     flex: 1;
+    flex-direction: column;
+    justify-content: center;
     min-height: 100vh;
     align-items: center;
 }
@@ -19,13 +21,14 @@ body {
     width: 30rem;
     height: 30rem;
     border: 20px solid white;
-    /* background-color: wheat; */
+    background-color: #ecf4f3;
     border-radius: 50%;
     margin: 50px auto;
     position: relative;
     padding: 2rem;
     box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.1), inset 0 0 0 3px #efefef,
         inset 0 0 10px black, 0 0 10px rgba(0, 0, 0, 0.2);
+    flex-shrink: 0;
 }
 
 .clock-face {
@@ -38,9 +41,23 @@ body {
 .hand {
     width: 50%;
     height: 6px;
-    background: black;
+    background: #006a71;
     position: absolute;
     top: 50%;
+    transform-origin: 100%;
+    transform: rotate(90deg);
+    transition: all 0.05s;
+    transition-timing-function: cubic-bezier(0.1, 2.7, 0.58, 1);
+}
+
+.hour-hand {
+    width: 35%;
+    position: absolute;
+    right: 50%;
+}
+
+.second-hand {
+    height: 3px;
 }
 
 p,
@@ -51,6 +68,10 @@ a {
 }
 
 span {
-    margin-right: 10px;
-    text-shadow: 2px 4px 3px rgba(0, 0, 0, 0.3);
+    font-size: 12px;
+    position: absolute;
+    bottom: 5px;
+    right: 15px;
+    text-shadow: 0px 15px 5px rgba(0, 0, 0, 0.1),
+        10px 20px 5px rgba(0, 0, 0, 0.05), -10px 20px 5px rgba(0, 0, 0, 0.05);
 }
