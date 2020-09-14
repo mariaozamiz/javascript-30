@@ -4,31 +4,21 @@ const spacingRange = document.getElementById('spacing');
 const blurRange = document.getElementById('blur');
 const colorBox = document.getElementById('base');
 
-function handleSpacing(ev) {
-    console.log('leo el spacing');
+function handleSpacing() {
     const newSpacing = spacingRange.value;
-    console.log(newSpacing);
+    document.documentElement.style.setProperty(`--spacing`, `${newSpacing}px`);
 }
 
-function handleBlur(ev) {
-    console.log('leo el blur');
+function handleBlur() {
     const newBlur = blurRange.value;
-    console.log(newBlur);
+    document.documentElement.style.setProperty(`--blur`, `${newBlur}px`);
 }
 
-function handleColor(ev) {
-    console.log('leo el color');
-}
-
-function changeColor(ev) {
-    console.log('cambio el color');
+function changeColor() {
     const newColor = colorBox.value;
-    console.log(newColor);
+    document.documentElement.style.setProperty(`--base`, newColor);
 }
-
-console.log(document.styleSheets);
 
 spacingRange.addEventListener('change', handleSpacing);
 blurRange.addEventListener('change', handleBlur);
-colorBox.addEventListener('click', handleColor);
 colorBox.addEventListener('input', changeColor);
