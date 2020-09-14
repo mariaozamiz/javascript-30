@@ -1,29 +1,34 @@
 'use strict';
 
-function handleKeys(ev) {
-    playSound(ev);
-    highlightDiv(ev);
+const spacingRange = document.getElementById('spacing');
+const blurRange = document.getElementById('blur');
+const colorBox = document.getElementById('base');
+
+function handleSpacing(ev) {
+    console.log('leo el spacing');
+    const newSpacing = spacingRange.value;
+    console.log(newSpacing);
 }
 
-function playSound(ev) {
-    const audio = document.querySelector(`audio[data-key="${ev.keyCode}"]`);
-    if (!audio) return;
-    audio.currentTime = 0;
-    audio.play();
+function handleBlur(ev) {
+    console.log('leo el blur');
+    const newBlur = blurRange.value;
+    console.log(newBlur);
 }
 
-function highlightDiv(ev) {
-    const key = document.querySelector(`div[data-key="${ev.keyCode}"]`);
-    key.classList.add('playing');
-    const keys = document.querySelectorAll('.key');
-    keys.forEach((key) =>
-        key.addEventListener('transitionend', removeTransition)
-    );
+function handleColor(ev) {
+    console.log('leo el color');
 }
 
-function removeTransition(ev) {
-    if (ev.propertyName !== 'transform') return;
-    this.classList.remove('playing');
+function changeColor(ev) {
+    console.log('cambio el color');
+    const newColor = colorBox.value;
+    console.log(newColor);
 }
 
-window.addEventListener('keydown', handleKeys);
+console.log(document.styleSheets);
+
+spacingRange.addEventListener('change', handleSpacing);
+blurRange.addEventListener('change', handleBlur);
+colorBox.addEventListener('click', handleColor);
+colorBox.addEventListener('input', changeColor);
