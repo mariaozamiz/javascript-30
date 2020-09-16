@@ -87,17 +87,18 @@ console.table(inventorsByBirthdate);
 
 let yearsLived = 0;
 for (let inventor of inventors) {
-    let yearslivedbyOne = inventor.passed - inventor.year;
-    console.log(yearslivedbyOne);
-    yearsLived = yearsLived + yearslivedbyOne;
+    let yearslivedbyEachInventor = inventor.passed - inventor.year;
+    yearsLived += yearslivedbyEachInventor;
 }
-console.log(yearsLived);
+console.log('The sum of years lived by all inventors are ' + yearsLived);
 
-// let yearsLivedByAllInventors = inventors.reduce(
-//     (acc, yearsLived) => acc + yearsLived,
-//     0
-// );
-// console.log(yearsLivedByAllInventors);
+//
+
+const yearsLivedByAllInventors = inventors.reduce(
+    (acc, inventor) => acc + (inventor.passed - inventor.year),
+    0
+);
+console.log(yearsLivedByAllInventors);
 
 // 5. Sort the inventors by years lived
 
