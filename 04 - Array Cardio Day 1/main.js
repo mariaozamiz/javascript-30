@@ -88,6 +88,7 @@ console.table(inventorsByBirthdate);
 let yearsLived = 0;
 for (let inventor of inventors) {
     let yearslivedbyEachInventor = inventor.passed - inventor.year;
+    console.log(yearslivedbyEachInventor);
     yearsLived += yearslivedbyEachInventor;
 }
 console.log('The sum of years lived by all inventors are ' + yearsLived);
@@ -98,9 +99,17 @@ const yearsLivedByAllInventors = inventors.reduce(
     (acc, inventor) => acc + (inventor.passed - inventor.year),
     0
 );
-console.log(yearsLivedByAllInventors);
+console.log(
+    'The sum of years lived by all inventors are ' + yearsLivedByAllInventors
+);
 
 // 5. Sort the inventors by years lived
+
+const inventorsByYearsLived = inventors;
+inventorsByYearsLived.sort((a, b) =>
+    a.passed - a.year > b.passed - b.year ? 1 : -1
+);
+console.table(inventorsByYearsLived);
 
 // 6. create a list of Boulevards in Paris that contain 'de' anywhere in the name
 // https://en.wikipedia.org/wiki/Category:Boulevards_in_Paris
