@@ -144,3 +144,12 @@ const data = [
     'car',
     'truck',
 ];
+
+const transportation = data.reduce((object, vehicle) => {
+    if (!object[vehicle]) {
+        object[vehicle] = 0;
+    }
+    object[vehicle]++;
+    return object;
+}, {});
+console.log(transportation);
