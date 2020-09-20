@@ -14,6 +14,8 @@ inputField.addEventListener('keyup', handleKeyUp);
 
 function handleKeyUp() {
     const search = inputField.value;
-    //const searchResults = results.find((text) => includes(search));
-    console.log(results);
+    const searchResults = results.filter((place) => {
+        return place.city.includes(search);
+    });
+    console.log(searchResults);
 }
