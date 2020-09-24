@@ -16,18 +16,47 @@ inputField.addEventListener('keyup', findResults);
 function findResults() {
     const search = inputField.value;
     searchResults = results.filter((place) => {
-        return place.city.includes(search) || place.state.includes(search);
+        return (
+            place.city.toUpperCase().includes(search.toUpperCase()) ||
+            place.state.toUpperCase().includes(search.toUpperCase())
+        );
     });
-    console.log(searchResults);
-    showResults();
+    showResults(search);
 }
 
-function showResults() {
+function showResults(search) {
     const resultsList = document.querySelector('.suggestions');
     resultsList.innerHTML = '';
     for (const place of searchResults) {
         const newLi = document.createElement('li');
         resultsList.appendChild(newLi);
-        newLi.innerHTML = `${place.city}, ${place.state}`;
+        //place
+        const placeSpan = document.createElement('span');
+        placeSpan.setAttribute('class', 'name');
+        newLi.appendChild(placeSpan);
+        const regex = new RegExp(search, 'gi');
+        let cityAndState = `${place.city}, ${place.state}`;
+        placeSpan.innerHTML = cityAndState.replace(
+            regex,
+            `<span class="hl">${search}</span>`
+        );
+        //population
+        const populationSpan = document.createElement('span');
+        populationSpan.setAttribute('class', 'population');
+        newLi.appendChild(populationSpan);
+        populationSpan.innerHTML = `${place.population}`;
     }
 }
+
+//OR
+// const html = searchResults
+//         .map((place) => {
+//             const highlight = search;
+//             return `
+//             <li>
+//                 <span class="name">${place.city}, ${place.state}</span>
+//                 <span class="population">${place.population}</span>
+//             </li>`;
+//         })
+//         .join('');
+//     resultsList.innerHTML = html;
