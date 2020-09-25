@@ -34,4 +34,5 @@ const thatText = comments.findIndex((comment) => comment.id === 823423);
 console.log(thatText);
 // delete the comment with the ID of 823423
 const deleteComments = comments.splice(1, 1);
+console.log(deleteComments);
 console.log(comments);
