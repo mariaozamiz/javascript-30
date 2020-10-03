@@ -1,14 +1,24 @@
 'use strict';
 
-// shift key value = 16;
+const checkboxes = document.querySelectorAll('.inbox input[type="checkbox"]');
 
-const checkboxes = document.querySelectorAll(`input[type="checkbox"]`);
-console.log(checkboxes);
+let lastCheckedBox;
 
-const checkboxHandler = (ev) => {
-    console.log('hay un cambio en un checkbox ' + ev);
-};
+function handleCheckbox(ev) {
+    let inBetween = false;
+    if (ev.shiftKey && this.checked) {
+        checkboxes.forEach((checkbox) => {
+            if (checkbox === this || checkbox === lastCheckedBox) {
+                inBetween = !inBetween;
+            }
+            if (inBetween) {
+                checkbox.checked = true;
+            }
+        });
+    }
+    lastCheckedBox = this;
+}
 
 checkboxes.forEach((checkbox) => {
-    checkbox.addEventListener('click', checkboxHandler);
+    checkbox.addEventListener('click', handleCheckbox);
 });
