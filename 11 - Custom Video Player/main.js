@@ -21,6 +21,12 @@ function playHandler() {
     // video[method]();
 }
 
+function togglePlayButton() {
+    playButton.innerHTML === '►'
+        ? (playButton.innerHTML = '❚❚')
+        : (playButton.innerHTML = '►');
+}
+
 function volumeHandler() {
     console.log('change en volume');
 }
@@ -37,6 +43,9 @@ function forward25Handler() {
     console.log('click en forward');
 }
 
+video.addEventListener('click', playHandler);
+video.addEventListener('play', togglePlayButton);
+video.addEventListener('pause', togglePlayButton);
 playButton.addEventListener('click', playHandler);
 volumeRange.addEventListener('change', volumeHandler);
 playbackRate.addEventListener('change', playbackHandler);
