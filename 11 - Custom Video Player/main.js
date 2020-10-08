@@ -2,16 +2,23 @@
 
 const player = document.querySelector('.player');
 const video = player.querySelector('.viewer');
-const progress = document.querySelector('.progress');
-const progressBar = document.querySelector('.progress__filled');
+const progressBar = document.querySelector('.progress');
+const progressBarFilled = document.querySelector('.progress__filled');
 const playButton = document.querySelector('.player__button');
 const volumeRange = document.querySelector(`input[name='volume']`);
 const playbackRate = document.querySelector(`input[name='playbackRate']`);
-const rewindButton = document.querySelector(`button[data-skip='-10']`);
-const forwardButton = document.querySelector(`button[data-skip='25']`);
+const skipButton = document.querySelectorAll(`button[data-skip]`);
 
-function progressHandler() {
-    console.log('change en progress');
+function progressUpdate() {
+    const percent = (video.currentTime / video.duration) * 100;
+    progressBarFilled.style.flexBasis = `${percent}%`;
+    console.log(percent);
+}
+
+function progressBarHandler(ev) {
+    const progressTime =
+        (ev.offsetX / progressBar.offsetWidth) * video.duration;
+    video.currentTime = progressTime;
 }
 
 function playHandler() {
@@ -42,8 +49,9 @@ function skipHandler() {
 video.addEventListener('click', playHandler);
 video.addEventListener('play', togglePlayButton);
 video.addEventListener('pause', togglePlayButton);
+video.addEventListener('timeupdate', progressUpdate);
+progressBar.addEventListener('click', progressBarHandler);
 playButton.addEventListener('click', playHandler);
 volumeRange.addEventListener('change', volumeHandler);
 playbackRate.addEventListener('change', playbackHandler);
-rewindButton.addEventListener('click', skipHandler);
-forwardButton.addEventListener('click', skipHandler);
+skipButton.forEach((button) => button.addEventListener('click', skipHandler));
