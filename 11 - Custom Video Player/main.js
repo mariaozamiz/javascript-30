@@ -7,8 +7,8 @@ const progressBar = document.querySelector('.progress__filled');
 const playButton = document.querySelector('.player__button');
 const volumeRange = document.querySelector(`input[name='volume']`);
 const playbackRate = document.querySelector(`input[name='playbackRate']`);
-const rewind10Button = document.querySelector(`button[data-skip='-10']`);
-const forward25Button = document.querySelector(`button[data-skip='25']`);
+const rewindButton = document.querySelector(`button[data-skip='-10']`);
+const forwardButton = document.querySelector(`button[data-skip='25']`);
 
 function progressHandler() {
     console.log('change en progress');
@@ -28,11 +28,11 @@ function togglePlayButton() {
 }
 
 function volumeHandler() {
-    console.log('change en volume');
+    video.volume = this.value;
 }
 
 function playbackHandler() {
-    console.log('change en playback');
+    video.playbackRate = this.value;
 }
 
 function skipHandler() {
@@ -45,5 +45,5 @@ video.addEventListener('pause', togglePlayButton);
 playButton.addEventListener('click', playHandler);
 volumeRange.addEventListener('change', volumeHandler);
 playbackRate.addEventListener('change', playbackHandler);
-rewind10Button.addEventListener('click', skipHandler);
-forward25Button.addEventListener('click', skipHandler);
+rewindButton.addEventListener('click', skipHandler);
+forwardButton.addEventListener('click', skipHandler);
