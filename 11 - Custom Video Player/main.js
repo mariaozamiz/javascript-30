@@ -35,12 +35,8 @@ function playbackHandler() {
     console.log('change en playback');
 }
 
-function rewind10Handler() {
-    console.log('click en rewind');
-}
-
-function forward25Handler() {
-    console.log('click en forward');
+function skipHandler() {
+    video.currentTime += parseInt(this.dataset.skip);
 }
 
 video.addEventListener('click', playHandler);
@@ -49,5 +45,5 @@ video.addEventListener('pause', togglePlayButton);
 playButton.addEventListener('click', playHandler);
 volumeRange.addEventListener('change', volumeHandler);
 playbackRate.addEventListener('change', playbackHandler);
-rewind10Button.addEventListener('click', rewind10Handler);
-forward25Button.addEventListener('click', forward25Handler);
+rewind10Button.addEventListener('click', skipHandler);
+forward25Button.addEventListener('click', skipHandler);
