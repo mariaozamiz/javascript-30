@@ -8,11 +8,11 @@ const playButton = document.querySelector('.player__button');
 const volumeRange = document.querySelector(`input[name='volume']`);
 const playbackRate = document.querySelector(`input[name='playbackRate']`);
 const skipButton = document.querySelectorAll(`button[data-skip]`);
+let mousedown;
 
 function progressUpdate() {
     const percent = (video.currentTime / video.duration) * 100;
     progressBarFilled.style.flexBasis = `${percent}%`;
-    console.log(percent);
 }
 
 function progressBarHandler(ev) {
@@ -42,7 +42,7 @@ function playbackHandler() {
     video.playbackRate = this.value;
 }
 
-function skipHandler() {
+function skipHandler(ev) {
     video.currentTime += parseInt(this.dataset.skip);
 }
 
@@ -50,7 +50,14 @@ video.addEventListener('click', playHandler);
 video.addEventListener('play', togglePlayButton);
 video.addEventListener('pause', togglePlayButton);
 video.addEventListener('timeupdate', progressUpdate);
+
 progressBar.addEventListener('click', progressBarHandler);
+progressBar.addEventListener(
+    'mousemove',
+    (e) => mousedown && progressBarHandler(e)
+);
+progressBar.addEventListener('mousedown', () => (mousedown = true));
+progressBar.addEventListener('mouseup', () => (mousedown = false));
 playButton.addEventListener('click', playHandler);
 volumeRange.addEventListener('change', volumeHandler);
 playbackRate.addEventListener('change', playbackHandler);
