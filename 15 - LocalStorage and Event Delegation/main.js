@@ -3,7 +3,9 @@
 const form = document.querySelector('.add-items');
 const platesList = document.querySelector('.plates');
 const inputField = document.querySelector('[name=item]');
-const plates = [];
+let plates = JSON.parse(localStorage.getItem('storedPlates')) || [];
+
+paintList();
 
 function addPlateToList(e) {
     e.preventDefault();
@@ -11,14 +13,13 @@ function addPlateToList(e) {
         text: inputField.value,
         done: false,
     };
-    console.log(item);
     plates.push(item);
+    updateLocalStorage();
     paintList();
     this.reset();
 }
 
 function paintList() {
-    console.log(plates);
     platesList.innerHTML = plates
         .map((plate, i) => {
             return `
@@ -33,4 +34,17 @@ function paintList() {
         .join('');
 }
 
+function toggleStateOfPlates(e) {
+    if (!e.target.matches('input')) return;
+    const index = e.target.dataset.index;
+    plates[index].done = !plates[index].done;
+    updateLocalStorage();
+    paintList();
+}
+
+function updateLocalStorage() {
+    localStorage.setItem('storedPlates', JSON.stringify(plates));
+}
+
 form.addEventListener('submit', addPlateToList);
+platesList.addEventListener('click', toggleStateOfPlates);
