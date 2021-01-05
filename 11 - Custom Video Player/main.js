@@ -23,9 +23,6 @@ function progressBarHandler(ev) {
 
 function playHandler() {
     video.paused ? video.play() : video.pause();
-
-    //const method = video.paused? 'play' : 'pause';
-    // video[method]();
 }
 
 function togglePlayButton() {

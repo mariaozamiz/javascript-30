@@ -47,16 +47,3 @@ function showResults(search) {
         populationSpan.innerHTML = `${place.population}`;
     }
 }
-
-//OR
-// const html = searchResults
-//         .map((place) => {
-//             const highlight = search;
-//             return `
-//             <li>
-//                 <span class="name">${place.city}, ${place.state}</span>
-//                 <span class="population">${place.population}</span>
-//             </li>`;
-//         })
-//         .join('');
-//     resultsList.innerHTML = html;
