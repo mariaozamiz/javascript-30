@@ -27,7 +27,7 @@ A continuación, una muestra de 10 proyectos:
 
 ## 5. Text-shadow reactiva
 
-![slide-scroll](https://github.com/mariaozamiz/javascript-30/blob/master/images/js-30-slide-scroll.gif?raw=true)
+![slide-scroll](https://github.com/mariaozamiz/javascript-30/blob/master/images/js-30-shadow.gif?raw=true)
 
 
 ## 6. Reconocimiento de voz
@@ -44,4 +44,4 @@ A continuación, una muestra de 10 proyectos:
 
 ## 9. Scroll lateral con drag
 
-![drop](https://github.com/mariaozamiz/javascript-30/blob/master/images/js-30-drop.gif?raw=true)
+![drop](https://github.com/mariaozamiz/javascript-30/blob/master/images/js-30-drag.gif?raw=true)
