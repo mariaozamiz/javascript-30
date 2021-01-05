@@ -31,8 +31,5 @@ function checkSlide(e) {
         if (isHalfShown && isNotScrolledPast) {
             image.classList.add('active');
         }
-        // } else {
-        //     image.classList.remove('active');
-        // }
     });
 }

@@ -29,11 +29,11 @@ function paintToCanvas() {
     return setInterval(() => {
         ctx.drawImage(video, 0, 0, width, height);
         //take the pixels and mess with them
-        // let pixels = ctx.getImageData(0, 0, width, height);
-        // pixels = redEffect(pixels);
-        // pixels = rgbSplit(pixels);
-        // pixels = greenScreen(pixels);
-        // ctx.putImageData(pixels, 0, 0);
+        let pixels = ctx.getImageData(0, 0, width, height);
+        pixels = redEffect(pixels);
+        pixels = rgbSplit(pixels);
+        pixels = greenScreen(pixels);
+        ctx.putImageData(pixels, 0, 0);
     }, 16);
 }
 
